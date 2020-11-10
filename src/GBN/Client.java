@@ -1,9 +1,6 @@
 package GBN;
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -78,15 +75,15 @@ public class Client {
         }
 
 
+        long startTime = System.currentTimeMillis();
+//        System.out.println(startTime);
         GoBackN gbn = new GoBackN(serverHostName, serverPort, segmentArray, windowSize);
         gbn.rdt_send();
 
-        long startTime = System.currentTimeMillis() / 1000;
-        System.out.println(startTime);
+        long endTime = System.currentTimeMillis();
+//        System.out.println(endTime);
+        System.out.println(endTime - startTime);
 
-//        rdt_send(filePath, socket, address, serverPort);
-//
-//        socket.close();
 
     }
 
