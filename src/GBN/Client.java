@@ -64,11 +64,12 @@ public class Client {
             br.close();
         }
 
-        int var1 = mss*10;
+        int var1 = mss * 10;
+        int seqNum = 0;
         List<String> segStringArray = segmentationFunction(rfcString, var1);
         List<Segment> segmentArray = new ArrayList<Segment>();
         Iterator<String> it = segStringArray.iterator();
-        int seqNum = 0;
+
         while(it.hasNext()) {
             String segment = (String) it.next();
             segmentArray.add(new Segment(segment, var1, seqNum++));

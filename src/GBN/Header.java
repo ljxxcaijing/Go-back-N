@@ -11,6 +11,10 @@ public class Header {
     private short checksum;
     private short packetType;
     private byte[] headerBytes = new byte[8];
+
+    private static final int MASK16 = 0xFFFF;
+    private static final int MASK8 = 0xFF;
+
     static
     {
         packetTypes = new HashMap<String, Short>();
@@ -19,21 +23,21 @@ public class Header {
     }
     public Header(int seqNum, byte[] segmentStream, String pType ) {
         this.seqNum = seqNum;
-        this.checksum = this.calculateCheckSum(segmentStream);
+        this.checksum = this.calCheckSum(segmentStream);
         this.packetType = packetTypes.get(pType);
         this.headerBytes = setHeaderBytes();
     }
-    public static short calculateCheckSum(byte[] segmentStream) {
+    public static short calCheckSum(byte[] segmentStream) {
         int length = segmentStream.length;
         int i = 0;
         long sum = 0;
         while (length > 0) {
-            sum += (segmentStream[i++]&0xff) << 8;
+            sum += (segmentStream[i++] & MASK8) << 8;
             if ((--length)==0) break;
-            sum += (segmentStream[i++]&0xff);
+            sum += (segmentStream[i++] & MASK8);
             --length;
         }
-        return (short) ((~((sum & 0xFFFF)+(sum >> 16)))&0xFFFF);
+        return (short) ((~((sum & MASK16)+(sum >> 16)))& MASK16);
     }
 
     public byte[] setHeaderBytes() {

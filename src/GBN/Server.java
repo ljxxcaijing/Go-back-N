@@ -43,7 +43,6 @@ public class Server {
 
             processPacket(receivedData, receivePacket);
         }
-        //serverSocket.close();
     }
 
     public static void processPacket(byte[] packet, DatagramPacket receivePacket){
@@ -64,8 +63,7 @@ public class Server {
         short checkSumInShort = Header.byteArrayToShort(checkSum);
         short packTypeInShort = Header.byteArrayToShort(packetType);
 
-        short dataCheckSum =  Header.calculateCheckSum(dataBytes);
-        //**System.out.println("Received "+seqNumInInt);*8
+        short dataCheckSum =  Header.calCheckSum(dataBytes);
         boolean isValid = validateData(seqNumInInt, checkSumInShort, packTypeInShort, dataCheckSum);
         if(isValid) {
 
@@ -74,11 +72,8 @@ public class Server {
             double randomProb = (double)randomNumber/100;
             if(randomProb >= probability) {
                 currentSeqNumber++;
-                //Add to file
                 appendToFile(dataBytes);
-                //Send Response
                 sendAcknowledgement(receivePacket);
-                //**System.out.println("Sent "+seqNumInInt+" "+currentSeqNumber);**
             } else {
                 System.out.println("Packet loss, sequence number = "+seqNumInInt);
             }
@@ -111,9 +106,7 @@ public class Server {
 
         DatagramPacket sendPacket = new DatagramPacket(acknowledgement, acknowledgement.length, receivePacket.getAddress(),receivePacket.getPort());
         try {
-            //if(currentSeqNumber == 2) {
             serverSocket.send(sendPacket);
-            //}
         } catch (IOException e) {
             e.printStackTrace();
         }
