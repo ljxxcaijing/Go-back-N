@@ -41,7 +41,6 @@ public class Server {
 
             System.arraycopy(receivePacket.getData(), 0, receivedData, 0, receivedData.length);
 
-
             processPacket(receivedData, receivePacket);
         }
         //serverSocket.close();
@@ -82,7 +81,6 @@ public class Server {
                 //**System.out.println("Sent "+seqNumInInt+" "+currentSeqNumber);**
             } else {
                 System.out.println("Packet loss, sequence number = "+seqNumInInt);
-                //**System.out.println("Packet dropped: "+seqNumInInt+" "+randomProb+" "+currentSeqNumber);**
             }
         }
     }
@@ -117,7 +115,6 @@ public class Server {
             serverSocket.send(sendPacket);
             //}
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -131,7 +128,6 @@ public class Server {
             e.printStackTrace();
         } finally {
             try {
-                // Close the writer regardless of what happens...
                 writer.close();
             } catch (Exception e) {
             }

@@ -103,8 +103,8 @@ class ReceiveAck extends Thread {
             windowList.getFirst().t.cancel();
             windowList.removeFirst();
             if(windowList.size() == 0) {
-                long entTime = System.currentTimeMillis() / 1000;
-                System.out.println(entTime);
+                long endTime = System.currentTimeMillis();
+                System.out.println("endTime:" + endTime);
                 System.exit(0);
             }
             //System.out.println(receivedData[0]+" "+receivedData[1]+" "+receivedData[2]+" "+receivedData[3]+" "+receivedData[4]+" "+receivedData[5]+" "+receivedData[6]+" "+receivedData[7]);

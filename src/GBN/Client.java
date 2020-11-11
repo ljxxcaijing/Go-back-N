@@ -76,13 +76,12 @@ public class Client {
 
 
         long startTime = System.currentTimeMillis();
-//        System.out.println(startTime);
+        System.out.println("startTime:" + startTime);
         GoBackN gbn = new GoBackN(serverHostName, serverPort, segmentArray, windowSize);
         gbn.rdt_send();
 
-        long endTime = System.currentTimeMillis();
-//        System.out.println(endTime);
-        System.out.println(endTime - startTime);
+
+//        System.out.println(endTime - startTime);
 
 
     }
