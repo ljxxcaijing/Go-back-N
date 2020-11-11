@@ -2,6 +2,7 @@
 - Group member: Jing Cai(jcai3), Weiran Fu(wfu4)  
 - Implement the Go-back-N automatic repeat request (ARQ) scheme and carry out a number of experiments to evaluate its performance. In the process I expect that you will develop a good understanding of
 ARQ schemes and reliable data transfer protocols and build a number of fundamental skills related to writing transport layer services.
+- Use JDK 1.7 + IDEA to build
 
 + First, compile java file   
 ```javac ./src/GBN/*.java```  
